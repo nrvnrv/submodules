@@ -1,0 +1,50 @@
+{
+    "common": {
+        "DBSERVICE_PORT": 3003,
+        "DBSERVICE_SERVER": "0.0.0.0",
+        "functionFieldInHttp": "function",
+        "queryFieldInHttp": "query",
+        "backend-db-phpPath": "src/QueryExecutor.php",
+        "SPECIAL_ELEMENT_TO_STOP_SERVICE": "SPECIAL_ELEMENT_TO_STOP_SERVICE"
+    },
+
+    "sql_query_status": {
+        "SQL_QUERY_STATUS_FRESH": 0,
+        "SQL_QUERY_STATUS_DONE": 1,
+        "SQL_QUERY_STATUS_PROCESSING": 2,
+        "SQL_QUERY_STATUS_SESSION_CLOSED": 3,
+        "SQL_QUERY_STATUS_ERROR": 4
+    },
+
+    "mpe_client_session_status": {
+        "MPE_CLIENT_SESSION_STATUS_UNVERIFIED": 0,
+        "MPE_CLIENT_SESSION_STATUS_SUBMIT": 1,
+        "MPE_CLIENT_SESSION_STATUS_CLOSED": 3,
+        "MPE_CLIENT_SESSION_STATUS_ERROR": 4
+    },
+
+    "DBMS": {
+        "OMS_DBMS": "SYBASE",
+        "MPE_DBMS": "POSTGRESQL",
+        "LOG_DBMS": "CLICKHOUSE"
+    },
+
+    "log_level": {
+        "INFO": 0,
+        "NOTICE": 1,
+        "DEBUG": 2,
+        "WARNING": 3,
+        "ERROR": 4,
+        "CRITICAL": 5,
+        "ALERT": 6,
+        "EMERGENCY": 7
+    },
+
+    "CONDUCTOR": {
+        "REQUEST_STATUS_FRESH": 0,
+        "REQUEST_STATUS_DONE": 1,
+        "REQUEST_STATUS_PROCESSING": 2,
+        "REQUEST_STATUS_ERROR": 3
+    }
+}
+
