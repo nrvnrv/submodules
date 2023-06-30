@@ -2,6 +2,7 @@
 
 
 function readJsonConf($jsonPath) {
+    if (!file_exists($jsonPath)) throw new Exception("file not found: $jsonPath");
     $confData = file_get_contents($jsonPath);
     $jsonConf = json_decode($confData, true);
     if($jsonConf === false){} // TODO: smth error
@@ -10,6 +11,7 @@ function readJsonConf($jsonPath) {
 
 
 function readDotEnv($envPath) {
+    if (!file_exists($envPath)) throw new Exception("file not found: $envPath");
     $lines = file($envPath);
     $envConf = [];
     foreach ($lines as $line) {
