@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/commonFunctions.php";
-require_once __DIR__ . "/commonFunctions.php";
+require_once __DIR__ . "/LogToDB.php";
 
 
 class LogToDB {
