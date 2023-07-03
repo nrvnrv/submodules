@@ -1,7 +1,7 @@
 <?php
 
 
-function readJsonConf($jsonPath) {
+function readJson($jsonPath) {
     if (!file_exists($jsonPath)) throw new Exception("file not found: $jsonPath");
     $confData = file_get_contents($jsonPath);
     $jsonConf = json_decode($confData, true);

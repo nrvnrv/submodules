@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/commonFunctions.php";
+require_once __DIR__ . "/../../../common/ReadConf.php";
 
 
 class LogToDB {
@@ -11,7 +11,7 @@ class LogToDB {
     public function __construct($logSource, $envPath, $confPath) {
         $this->logSource = $logSource;
         $this->ENV_CONF = readDotEnv($envPath);
-        $this->APP_CONF = readJsonConf($confPath);
+        $this->APP_CONF = readJson($confPath);
         $this->connection = $this->connect();
     }
 

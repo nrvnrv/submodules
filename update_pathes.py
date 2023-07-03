@@ -46,6 +46,7 @@ def update_pathes(result_json_path = "./pathes.json", current_folder = "./",
 if __name__ == "__main__":
     result_json_path = "./pathes.json"
     current_folder = "./" # os.getcwd()
+    file_to_search_component = ".is_a_component"
     file_to_search_modules = ".is_a_module"
     file_to_search_src = ".is_a_src"
-    update_pathes(result_json_path, current_folder, file_to_search_modules, file_to_search_src)
+    update_pathes(result_json_path, current_folder, file_to_search_component, file_to_search_modules, file_to_search_src)
