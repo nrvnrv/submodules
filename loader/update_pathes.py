@@ -10,13 +10,13 @@ def update_pathes(base_folder: str, search_dict: dict, result_json_path_list: li
     папки с модулями, исходными кодами, подключаемыме файлами. Формат:
     {
         "имя модуля": {
-            "артефакт": путь к артефакту
+            "артефакт": "путь к артефакту"
         }
     }
+
     :param base_folder: Путь к корневой папке репозитория подмодулей
     :type base_folder: str
-    :param search_dict: [ключ - искомый объект]: значение - флаг искомого объекта. Флаг - файл, 
-                        который должен находиться в папке с искомым объектом
+    :param search_dict: [ключ - искомый объект]: значение - флаг искомого объекта. Флаг - файл, который должен находиться в папке с искомым объектом
     :type search_dict: dict
     :param result_json_path_list: Пути к формируемым path-файлам  
     :type result_json_path_list: list
@@ -37,11 +37,17 @@ def update_pathes_main(repo_root: str, submodules_conf_json_path: str, result_js
 
     """
     Сформировать параметры функции update_pathes
+
     :param repo_root: Путь к корневой папке репозитория подмодулей
+    :type repo_root: str
     :param submodules_conf_json_path: путь к конфигурационному фалу проекта подмодулей
+    :type submodules_conf_json_path: str
     :param result_json_path_list: Список путей по которым сохранять полученный path-файл  
+    :type result_json_path_list: list
     :return: Содержимое результирующего файла result_json_path (см update_pathes)
+    :rtype: list
     """
+    
 
     # читаем конфиги 
     with open(submodules_conf_json_path) as f:

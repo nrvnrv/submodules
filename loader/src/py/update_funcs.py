@@ -7,6 +7,7 @@ def get_dir_of_searching_file(folder: str, searching_file: str):
     """
     (not used now) Найти пути ко всем файлам с именем searching_file 
     во всех подпапках папки folder.
+
     :param folder: Путь к папке в поддиректориях которой будет осуществляться поиск
     :type folder: str
     :param searching_file: Имя по которому будет произведен поиск
@@ -31,10 +32,10 @@ def form_artifacts_list(base_folder: str, search_dict: dict) -> list:
 
     """
     Сформировать dict для функции update_pathes
+
     :param base_folder: Путь к корневой папке репозитория подмодулей
     :type base_folder: str
-    :param search_dict: [ключ - искомый объект]: значение - флаг искомого объекта. Флаг - файл, 
-                        который должен находиться в папке с искомым объектом
+    :param search_dict: [ключ - искомый объект]: значение - флаг искомого объекта. Флаг - файл, который должен находиться в папке с искомым объектом
     :type search_dict: dict
     :return: Содержимое результирующего файла result_json_path
     :rtype: list
@@ -87,6 +88,7 @@ def form_artifacts_list(base_folder: str, search_dict: dict) -> list:
 def form_json_file(json_to_save, json_path: str):
     """
     Сохранить json в json файл
+
     :param json_to_save: Содержимое файла
     :type json_to_save: json
     :param json_path: Путь к файлу

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/php/confload/ReadConf.php";
+require_once __DIR__ . "/../submods/php/confload/ReadConf.php";
 
 
 function loadModByPath($modulePath) {
