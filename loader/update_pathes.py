@@ -1,89 +1,91 @@
 import os
 import json
+from src.py.update_funcs import form_artifacts_list, form_json_file
 
 
-def get_dir_of_searching_file(folder, searching_file):
+def update_pathes(base_folder: str, search_dict: dict, result_json_path_list: list) -> list:
+
     """
-    Найти пути ко всем файлам с именем searching_file 
-    во всех подпапках папки folder.
-    :param folder: Путь к папке в поддиректориях которой будет осуществляться поиск
-    :type folder: str
-    :param searching_file: Имя по которому будет произведен поиск
-    :type searching_file: str
-    :return: Список путей поддиректорий папки folder по которым найден файл
-    :rtype: list[str]
-    """
-    # Список всех файлов всех поддиректорий папки folder
-    subpathes_list = os.walk(folder) 
-    searched_dirs = [] # формируемый список путей к файлам searching_file
-    # поиск путей ко всем файлам searching_file
-    for address, dirs, files in subpathes_list:
-        for name in files:
-            if (searching_file in name):
-                searched_dirs.append(address)
-    return searched_dirs
-
-
-def match_module_and_src(modules_list, src_list, ):
-    result = {}
-    for module_dir in modules_list:
-        for src_dir in src_list:
-            if module_dir in src_dir:
-                module_name = os.path.split(module_dir)[1]
-                # os.path.join
-                result[module_name] = {
-                    "pathes": {
-                        "module": module_dir, 
-                        "src": src_dir
-                    }
-                }
-    return result
-
-
-def form_json(json_path, dict_to_save):
-    with open(json_path, "w", encoding="utf-8") as json_file:
-        json.dump(dict_to_save, json_file)
-
-
-def update_pathes(result_json_path = "./pathes.json", base_folder = "./", 
-                    file_to_search_component = ".is_a_component", 
-                    file_to_search_modules = ".is_a_module", 
-                    file_to_search_src = ".is_a_src"
-    ):
-
-    component_list = get_dir_of_searching_file(base_folder, file_to_search_component)
-    modules_list = get_dir_of_searching_file(base_folder, file_to_search_modules)
-    src_list = get_dir_of_searching_file(base_folder, file_to_search_src)
-    
-    modules_dict = match_module_and_src(modules_list, src_list)
-
-    form_json(result_json_path, modules_dict)
-
-    print(component_list)
-    print(modules_list)
-    print(src_list)
-    print(modules_dict)
-
-
-def update_pathes_main():
-
-    SUBMODULES_CONF_JSON_PATH = "./conf/cfg.json" # файл с конифгами проекта подмодулей
-    repo_root = './../' # корневая папка репозитория
-    current_folder = os.getcwd()
-
-    with open(SUBMODULES_CONF_JSON_PATH) as f:
-        SUBMODULES_CONF = json.load(f)
-    
-    SEARCH_DICT = {
-        "component": SUBMODULES_CONF['PATH']['FLAG']['component'],
-        "module": SUBMODULES_CONF['PATH']['FLAG']['module'],
-        "src": SUBMODULES_CONF['PATH']['FLAG']['src']
+    Сформировать конфигурационый path-файл (json) артефактов модулей - 
+    папки с модулями, исходными кодами, подключаемыме файлами. Формат:
+    {
+        "имя модуля": {
+            "артефакт": путь к артефакту
+        }
     }
+    :param base_folder: Путь к корневой папке репозитория подмодулей
+    :type base_folder: str
+    :param search_dict: [ключ - искомый объект]: значение - флаг искомого объекта. Флаг - файл, 
+                        который должен находиться в папке с искомым объектом
+    :type search_dict: dict
+    :param result_json_path_list: Пути к формируемым path-файлам  
+    :type result_json_path_list: list
+    :return: Содержимое результирующего файла result_json_path
+    :rtype: list
+    """
 
-    # update_pathes(
-    #     result_json_path = SUBMODULES_CONF['PATH']['submod_pathes_json'], 
-    #     base_folder = base_folder, SEARCH_DICT)
+    # формируем словарь (формат см описание ф-ии)
+    artifacts_list = form_artifacts_list(base_folder, search_dict)
+    # сохраняем полученный словарь в указанные файлы
+    for result_json_path in result_json_path_list:
+        form_json_file(artifacts_list, result_json_path)
+    
+    return artifacts_list
+
+
+def update_pathes_main(repo_root: str, submodules_conf_json_path: str, result_json_path_list: list = []) -> list:
+
+    """
+    Сформировать параметры функции update_pathes
+    :param repo_root: Путь к корневой папке репозитория подмодулей
+    :param submodules_conf_json_path: путь к конфигурационному фалу проекта подмодулей
+    :param result_json_path_list: Список путей по которым сохранять полученный path-файл  
+    :return: Содержимое результирующего файла result_json_path (см update_pathes)
+    """
+
+    # читаем конфиги 
+    with open(submodules_conf_json_path) as f:
+        SUBMODULES_CONF = json.load(f)
+
+    # путь к папке с подмодулями
+    submod_folder = repo_root + SUBMODULES_CONF['PATH']['submodules_folder']
+    current_script_folder = os.path.dirname(os.path.abspath(__file__)) # папка текущего скрипта
+    current_exec_folder = os.getcwd() # папка откуда запускается скрипт
+    
+    # задаем структуру того что будем искать
+    # [ключ - искомый объект]: значение - файл-флаг искомого объекта
+    # SEARCH_DICT = {
+    #     "component": SUBMODULES_CONF['PATH']['FLAG']['component'],
+    #     "module": SUBMODULES_CONF['PATH']['FLAG']['module'],
+    #     "module_include": SUBMODULES_CONF['PATH']['FLAG']['module_include'],
+    #     "module_src": SUBMODULES_CONF['PATH']['FLAG']['module_src']
+    # }
+    # определяется в конифгах 
+    SEARCH_DICT = SUBMODULES_CONF['PATH']['FLAG']
+
+    # сохранение в repo_root если список result_json_path_list пустой
+    # if (result_json_path_list == []): 
+    #     result_json_path_list = [repo_root + SUBMODULES_CONF['PATH']['submod_pathes_json']]
+    
+    # также сохраняем в папку конфигов
+    result_json_path_list.append(
+        SUBMODULES_CONF['PATH']['conf_folder'] + SUBMODULES_CONF['PATH']['submod_pathes_json']
+    )
+
+    # обновляем пути к искомым объектам
+    artifacts_list = update_pathes(
+        base_folder = submod_folder, # где искать
+        search_dict = SEARCH_DICT, # что искать
+        result_json_path_list = result_json_path_list # куда сохранять
+    )
+
+    return artifacts_list
 
 
 if __name__ == "__main__":
-    update_pathes_main()
+    # корневая папка репозитория
+    repo_root = '../' 
+    # файл с конифгами проекта подмодулей
+    SUBMODULES_CONF_JSON_PATH = "./conf/cfg.json" 
+    update_pathes_main(repo_root, SUBMODULES_CONF_JSON_PATH)
+    
