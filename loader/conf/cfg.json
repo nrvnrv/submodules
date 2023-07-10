@@ -1,0 +1,11 @@
+{
+    "PATH": {
+        "conf_folder": "./conf",
+        "submod_pathes_json": "./conf/pathes.json",
+        "FLAG": {
+            "component": ".is_a_component",
+            "module":  ".is_a_module",
+            "src":  ".is_a_src"
+        }
+    }
+}
