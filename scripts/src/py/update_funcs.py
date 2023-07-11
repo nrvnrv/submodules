@@ -52,7 +52,6 @@ def form_artifacts_list(base_folder: str, search_dict: dict) -> list:
     # Список всех файлов всех поддиректорий папки base_folder
     subpathes_list = os.walk(base_folder) 
     searched_dirs = [] # формируемый список путей к файлам searching_file
-    
     # поиск путей ко всем файлам searching_file
     for address, dirs, files in subpathes_list:
         for name in files:

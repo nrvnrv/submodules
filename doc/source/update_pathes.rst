@@ -1,5 +1,5 @@
-update_pathes
-===
+update submodules pathes
+=========================
 
 .. autosummary::
    :toctree: generated

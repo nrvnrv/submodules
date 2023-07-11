@@ -1,7 +1,9 @@
 {
     "PATH": {
 
-        "submodules_folder": "submods/",
+        "submodules_folder": "./submods/",
+
+        "conf_folder": "./conf/",
 
         "language_folder": {
             "php": "php",
@@ -9,9 +11,8 @@
             "js": "js"
         },
 
-        "conf_folder": "./conf",
 
-        "submod_pathes_json": "pathes.json",
+        "submod_pathes_json": "./pathes.json",
 
         "FLAG": {
             "component": ".is_a_component",
@@ -22,7 +23,11 @@
             
             "phpmodule":  ".is_a_phpmodule",
             "phpmodule_include":  ".is_a_phpmodule_include",
-            "phpmodule_src":  ".is_a_phpmodule_src"
+            "phpmodule_src":  ".is_a_phpmodule_src",
+
+            "jsmodule":  ".is_a_jsmodule",
+            "jsmodule_include":  ".is_a_jsmodule_include",
+            "jsmodule_src":  ".is_a_jsmodule_src"
         }
 
     }
