@@ -1,0 +1,3 @@
+sphinx
+maisie-sphinx-theme
+sphinx-autobuild

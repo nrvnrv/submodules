@@ -1,7 +1,5 @@
 {
     "common": {
-        "DBSERVICE_PORT": 3003,
-        "DBSERVICE_SERVER": "0.0.0.0",
         "functionFieldInHttp": "function",
         "queryFieldInHttp": "query",
         "backend-db-phpPath": "src/QueryExecutor.php",
@@ -17,10 +15,10 @@
     },
 
     "mpe_client_session_status": {
-        "MPE_CLIENT_SESSION_STATUS_UNVERIFIED": 0,
-        "MPE_CLIENT_SESSION_STATUS_SUBMIT": 1,
-        "MPE_CLIENT_SESSION_STATUS_CLOSED": 3,
-        "MPE_CLIENT_SESSION_STATUS_ERROR": 4
+        "UNVERIFIED": 0,
+        "SUBMIT": 1,
+        "CLOSED": 3,
+        "ERROR": 4
     },
 
     "DBMS": {
