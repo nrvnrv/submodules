@@ -1,10 +1,10 @@
 <?php
 
-require_once __DIR__ . "/commonFunctions.php";
+require_once __DIR__ . "/../../../confload/ReadConf.php";
 require_once __DIR__ . "/LogToDB.php";
 
 
-class LogToDB {
+class LogToAll {
 
     private $connection, $MPE_CONF, $ENV_CONF;
 

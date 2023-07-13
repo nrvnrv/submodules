@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../../common/ReadConf.php";
+require_once __DIR__ . "/../../../confload/ReadConf.php";
 
 
 class LogToDB {

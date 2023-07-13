@@ -104,7 +104,6 @@ def form_artifacts_list(root_folder: str, submod_folder: str, search_dict: dict)
         for name in files:
             for obj in search_dict:
                 if (search_dict[obj] == name):
-                    print(address)
                     searched_dirs.append({
                         'obj': obj, 
                         'path': address
