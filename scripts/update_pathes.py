@@ -4,7 +4,6 @@ from src.py.update_funcs import form_artifacts_list, form_json_file
 
 
 def update_pathes(root_folder: str, submod_folder: str, search_dict: dict, result_json_path_list: list) -> list:
-
     """
     Сформировать конфигурационый path-файл (json) артефактов модулей - 
     папки с модулями, исходными кодами, подключаемыме файлами. Формат:
