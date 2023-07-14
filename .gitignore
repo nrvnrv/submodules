@@ -2,3 +2,4 @@
 .env
 __pycache__
 scripts/src/py/__pycache__/update_funcs.cpython-311.pyc
+phpDocumentor.phar

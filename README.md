@@ -1,19 +1,41 @@
 # submodules
 
-common modules for microservices.
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-cfg.json - submodules project configs.
+Common modules for microservices.
 
 ## Proj structure
 
-* PL (php)
-    * component (logger)
-        * submodule (simple-class)
-            * code and includdin files - ./ or src etc (src)
+**submodules/**
+├───doc ***[project doc]***
+│   ├───phpDocumentor ***[php doc]***
+│   └───sphinx ***[py, js doc]***
+├───example ***[how to work with this proj]***
+├───scripts ***[to add new submods and include in your proj]***
+└───submods ***[folder with submods - see below]***
+
+**./scripts/conf/cfg.json** - submodules project configs.
+
+**Submods folder structure**
+
+- all submods folder
+	- prog. language folder
+    	- submodule folder
+        	- submodule realisation folder
+            	- code and includdin files - ./ or src etc 
+
+**Submods folder example**
+
+- submods
+	- php
+		- logger
+			 - simple-class
+			 	- src/LogToDB.php
 
 ## Creating new module
 
-* Init your module by ***.is_a_\*\*\**** files
+- write code
+- Init your module by ***.is__a__*\*\**** files
 
     * to init module folder place ***.is_a_module*** file in module folder
     * to init include folder place ***.is_a_src*** file in folder with includding files
@@ -24,7 +46,7 @@ cfg.json - submodules project configs.
 
 * After adding your modules
 
-    * run ***update_pathes.py*** script in the root folder "submodule" repo
+    * run ***update_pathes.py*** script in the script folder 
 
 ## Adding module in proj
 
