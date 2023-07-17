@@ -1,0 +1,62 @@
+{
+    "COMMON": {
+        "backend-db-phpPath": "src/QueryExecutor.php"
+    },
+    
+    "DBMS": {
+        "OMS": "SYBASE",
+        "MPE": "POSTGRESQL",
+        "LOG": "CLICKHOUSE"
+    },
+
+    "SQL_QUERY": {
+        "STATUS": {
+            "FRESH": 0,
+            "DONE": 1,
+            "PROCESSING": 2,
+            "SESSION_CLOSED": 3,
+            "ERROR": 4
+        }
+    },
+
+    "SQL_RESULT": {
+        "STATUS": {
+            "FRESH": 0,
+            "DONE": 1,
+            "PROCESSING": 2,
+            "SESSION_CLOSED": 3,
+            "ERROR": 4
+        }
+    },
+
+    "APP_CLIENT": {
+        "SESSION_STATUS": {
+            "UNVERIFIED": 0,
+            "SUBMIT": 1,
+            "CLOSED": 3,
+            "ERROR": 4
+        }
+    },
+
+    "LOG_LEVEL":{
+        "INFO": 0,
+        "NOTICE": 1,
+        "DEBUG": 2,
+        "WARNING": 3,
+        "ERROR": 4,
+        "CRITICAL": 5,
+        "ALERT": 6,
+        "EMERGENCY": 7
+    },
+
+    "CONDUCTOR": {
+        "REQUEST_STATUS": {
+            "FRESH": 0,
+            "DONE": 1,
+            "PROCESSING": 2,
+            "ERROR": 3
+        }
+    }
+
+}
+

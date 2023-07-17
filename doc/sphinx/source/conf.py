@@ -1,29 +1,47 @@
 import pathlib
 import sys
-sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix() + '/scripts')
 
+ROOT_PATH = pathlib.Path(__file__).parents[3].resolve().as_posix()
+sys.path.insert(0, ROOT_PATH)
 
 # -- Project information -----------------------------------------------------
-project = 'submodules'
-copyright = '2023, nrv'
-author = 'nrv'
+project = "submodules"
+copyright = "2023, nrv"
+author = "nrv"
 
 
 # -- General configuration ---------------------------------------------------
 extensions = [
-    'sphinx.ext.duration',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
+    "sphinx.ext.duration",
+    "sphinx.ext.autodoc",
+    # "sphinx.ext.autosummary",
+    "autoapi.extension",
 ]
 
-templates_path = ['_templates']
+autoapi_options = [
+    "members",
+    "undoc-members",
+    "show-inheritance",
+    "show-module-summary",
+    "imported-members",
+]
+
+# autosummary_generate = True  # Turn on sphinx.ext.autosummary
+# autoapi_dirs = [pathlib.Path(ROOT_PATH, "scripts"), pathlib.Path(ROOT_PATH, "submods")]
+autoapi_dirs = [pathlib.Path(ROOT_PATH)]
+autoapi_ignore = [pathlib.Path(ROOT_PATH, "doc")]
+autoapi_template_dir = "_autoapi_templates"
+autoapi_generate_api_docs = True
+add_module_names = True
+
+templates_path = ["_templates"]
 exclude_patterns = []
 
-language = 'ru'
+language = "ru"
 
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = 'alabaster'
+html_theme = "alabaster"
 
 # import maisie_sphinx_theme
 # extensions.append("maisie_sphinx_theme")
@@ -34,7 +52,7 @@ html_theme = 'alabaster'
 # html_theme = 'sphinx_rtd_theme'
 # html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 
 # # -- Options for php extension -------------------------------------------------
