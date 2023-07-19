@@ -2,16 +2,22 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Common modules for microservices.
+Common modules for microservices. 
 
 ## Proj structure
 
 **submodules/**
+
 ├───doc ***[project doc]***
+
 │   ├───phpDocumentor ***[php doc]***
+
 │   └───sphinx ***[py, js doc]***
+
 ├───example ***[how to work with this proj]***
+
 ├───scripts ***[to add new submods and include in your proj]***
+
 └───submods ***[folder with submods - see below]***
 
 **./scripts/conf/cfg.json** - submodules project configs.
@@ -69,5 +75,16 @@ Common modules for microservices.
 	or
 
       git clone --recurse-submodules ssh://git@gitlab.gsmk.ru:2222/<your_proj_name>.git
+
+* To update git submodules:
+
+	* update separate git submod in git submod folder:
+
+	  git fetch
+	  git merge
+
+	* update all git submods in proj root: 
+
+	  git submodule update --remote
 
 
