@@ -80,11 +80,11 @@ Common modules for microservices.
 
 	* update separate git submod in git submod folder:
 
-	  git fetch
-	  git merge
+		  git fetch
+		  git merge
 
 	* update all git submods in proj root: 
 
-	  git submodule update --remote
+		  git submodule update --remote
 
 

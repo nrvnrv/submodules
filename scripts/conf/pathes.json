@@ -1,1 +1,64 @@
-{"php": {"confload": {"phpmodule": {"path": "submods/php\\confload", "file": []}, "phpmodule_src": {"path": "submods/php\\confload", "file": ["ReadConf.php"]}}, "logger.simple_class": {"phpmodule": {"path": "submods/php\\logger\\simple_class", "file": []}, "phpmodule_src": {"path": "submods/php\\logger\\simple_class\\src", "file": ["LogToAll.php", "LogToDB.php"]}}}, "py": {"logger": {"pymodule": {"path": "submods/py\\logger", "file": []}, "pymodule_src": {"path": "submods/py\\logger", "file": []}}}, "common": {"common": {"component": {"path": "submods/py\\common", "file": ["common.py"]}}}}
+{
+    "php": {
+        "common": {
+            "phpmodule": {
+                "path": "submods/php\\common",
+                "file": []
+            },
+            "phpmodule_src": {
+                "path": "submods/php\\common",
+                "file": [
+                    "getGoogleTime.php",
+                    "common.php"
+                ]
+            }
+        },
+        "confload": {
+            "phpmodule": {
+                "path": "submods/php\\confload",
+                "file": []
+            },
+            "phpmodule_src": {
+                "path": "submods/php\\confload",
+                "file": [
+                    "ReadConf.php"
+                ]
+            }
+        },
+        "logger.simple_class": {
+            "phpmodule": {
+                "path": "submods/php\\logger\\simple_class",
+                "file": []
+            },
+            "phpmodule_src": {
+                "path": "submods/php\\logger\\simple_class\\src",
+                "file": [
+                    "LogToAll.php",
+                    "LogToDB.php"
+                ]
+            }
+        }
+    },
+    "py": {
+        "logger": {
+            "pymodule": {
+                "path": "submods/py\\logger",
+                "file": []
+            },
+            "pymodule_src": {
+                "path": "submods/py\\logger",
+                "file": []
+            }
+        }
+    },
+    "common": {
+        "common": {
+            "component": {
+                "path": "submods/py\\common",
+                "file": [
+                    "common.py"
+                ]
+            }
+        }
+    }
+}

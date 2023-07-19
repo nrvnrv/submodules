@@ -11,12 +11,19 @@ function headerCallbackForTimeFromGoogle($curl, $header) {
     return strlen($header);
 }
 
-function getCurrentTimeFromGoogle(){
+function getCurrentTimeFromGoogle() {
+    /**
+     * Получить текущие время и дату с серверов гугл.
+     *
+     * @return DateTimeImmutable Текущие время и дата
+     */
     global $date;
     $curl = curl_init("http://www.google.com/");
-    curl_setopt($curl, CURLOPT_NOBODY, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_HEADERFUNCTION, 'headerCallbackForTimeFromGoogle');
+    curl_setopt_array($curl, [
+        CURLOPT_NOBODY => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADERFUNCTION => 'headerCallbackForTimeFromGoogle',
+    ]);
     curl_exec($curl);
     curl_close($curl);
     if ($date != NULL) {

@@ -1,29 +1,24 @@
 <?php
 
 /**
- * A summary informing the user what the associated element does.
+ * Загрузчик подмодулей
  *
- * A *description*, that can span multiple lines, to go _in-depth_ into
- * the details of this element and to provide some background information
- * or textual references.
- *
- * @param string $myArgument With a *description* of this argument,
- *                           these may also span multiple lines.
- *
- * @return void
+ * ...
  */
 class LoadSubmodule {
 
     private array $submodList;
     private string $submoodRootDir;
 
-    // путь к корню проекта подмодулей
-    const SUBMODULES_ROOT_PATH = __DIR__ . "/../";
-    // путь к конфигам проекта подмодулей
-    const SUBMODULES_CONF_PATH = __DIR__ . "/conf/cfg.json";
+    /** @var const $SUBMODULES_ROOT_PATH путь к корню проекта подмодулей */
+    private const SUBMODULES_ROOT_PATH = __DIR__ . "/../";
+    /** @var const $SUBMODULES_ROOT_PATH путь к конфигам проекта подмодулей */
+    private const SUBMODULES_CONF_PATH = __DIR__ . "/conf/cfg.json";
 
-    private array $SUBMODULES_CONF; // конфиги
-    private array $SUBMODULES_PATHES; // подмодули
+    /** @var array $SUBMODULES_CONF конфиги приложения подмодулей */
+    private array $SUBMODULES_CONF; 
+    /** @var array $SUBMODULES_PATHES пути к подмодулям */
+    private array $SUBMODULES_PATHES;
 
 
     public function __construct(string $submoodRootDir, array $list) {
