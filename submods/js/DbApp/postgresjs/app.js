@@ -1,19 +1,25 @@
-import DbApp from './src/Dbapp.js';
+import DbApp from './src/DbApp.js';
 import {loadEnv} from '../../confload/src/confload.mjs';
 
 
+// нужен dotenv и табличка mpe_logs 
 async function main() {
-    console.log("i");
-    let dbApp = new DbApp(loadEnv('./conf/.env'));
-    console.log("i2");
-    for(let i = 0; i <= 50; i++) {
-        if((i % 10) == 0) {
-            let result = await dbApp.executeQuery("select count(*) from mpe_logs");
+    // раз в timeToSleep секунд отправляет асинхронный запрос numToSend раз
+    // задержка - чтобы можно было отключить и включить бд - смоделировать разрыв соединения
+    let numToSend = 60;
+    let timeToSleep = 5;
+    let dotEnvPath = './conf/.env';
+    // класс подключения к бд
+    let dbApp = new DbApp(loadEnv(dotEnvPath));
+    // цикл отправки sql запросов
+    for(let i = 0; i <= numToSend; i++) {
+        console.log(`${i} - sended`);
+        dbApp.executeQueryTag`select count(*), ${i} from mpe_logs`.then(result => {
             console.log(result);
-        }
-        else console.log(i);
-        await new Promise(r => setTimeout(r, 2000));
+        });
+        await new Promise(r => setTimeout(r, timeToSleep));
     }
+    console.log("--- END ---");
 }
 
 main();
