@@ -1,4 +1,6 @@
 import postgres from 'postgres'
+import DbAppBaseClass from "../../DbAppBaseClass/src/DbAppBaseClass.mjs";
+
 
 // строка которая содержится в тексте ошибки библиотеки
 //  при разрыве соединения
@@ -8,7 +10,7 @@ const PGJSMSG_SYNTAX_ERROR = "PostgresError: syntax error";
 // при старте бд
 const PGJSMSG_STARTINGUP_ERROR = "PostgresError: the database system is starting up";
 
-class DbApp {
+export default class DbAppPgjs extends DbAppBaseClass {
 
     constructor(
         envConf, 
@@ -19,13 +21,11 @@ class DbApp {
             username: 'POSTGRESQL_USERNAME',
             password: 'POSTGRESQL_PASSWORD',
     }) {
+        super(envConf, envDbFields);
 
-        this.ENV_CONF = envConf;
-        this.envDbFields = envDbFields;
-
-        this.dbConnectionStructure = this.formDbConnectionStructure();
         this.connection = this.connect();
 
+        // переменные и "константы", отвечают за переподключение к бд
         // this.remainingRecconectionsQuantity = 500;
         // this.MAX_LOCAL_RECONNECTION_NUMBER = 1500;
         // this.localReconnectionCounter = 0;
@@ -33,29 +33,23 @@ class DbApp {
     }
 
 
-    formDbConnectionStructure() {
-        // формирует структуру подключения к бд
-        let dbConnectionStructure = {};
-        for(let key of Object.keys(this.envDbFields))
-            dbConnectionStructure[key] = this.ENV_CONF[[this.envDbFields[key]]];
-        return dbConnectionStructure;
-    }
 
-
+    // создает объект подключения к бд
     connect() {
-        // объект подключения к бд
         let connect = postgres(this.dbConnectionStructure);
         console.log("connect")
         return connect;
     }
 
 
+    // проверяет работает ли бд 
     async checkConnection() {
         try{ await this.connection`SELECT 1`; return true; }
         catch(err) { return false;}
     }
 
 
+    // функция переподключения (ждет пока бд перезапустится)
     async reconnect() {
         while(true) {
             console.log("recconect: "); 
@@ -66,6 +60,7 @@ class DbApp {
     }
 
 
+    // тэговая функция выполнения запросов
     async executeQueryTag(strings, ...args) {
         let sqlResult;
         try {
@@ -76,6 +71,8 @@ class DbApp {
         return sqlResult;
     }
 
+
+    // обработчик ошибки запуска бд (PGJSMSG_STARTINGUP_ERROR - все равно генерируется)
     async ProcDbStartingError(err) {
         while(true) {
             await new Promise(r => setTimeout(r, 7000));
@@ -83,6 +80,8 @@ class DbApp {
         }
     }
 
+
+    // ф-ии обработки ошибок
     async ProcError(err) {
         // обработка ошибки, связанной с разрывом соединения
         if (err.message.includes(PGJSMSG_CONNECTION_ERROR))
@@ -98,6 +97,7 @@ class DbApp {
     }
 
 
+    // обработка разрыва соединения (отключения бд)
     async ProcErrorConnection(err) {
         // if(this.remainingRecconectionsQuantity > 0) {
         //     this.remainingRecconectionsQuantity++;
@@ -113,4 +113,3 @@ class DbApp {
 }
 
 
-export default DbApp
