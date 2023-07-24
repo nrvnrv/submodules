@@ -1,0 +1,15 @@
+{
+  "name": "postgresjs",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "app to work with postgresql using postgres.js lib",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "postgres": "^3.3.5"
+  }
+}
