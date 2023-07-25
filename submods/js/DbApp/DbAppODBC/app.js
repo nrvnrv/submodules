@@ -1,4 +1,4 @@
-import DbAppPgjs from './src/DbAppPgjs.js';
+import DbAppODBC from './src/DbAppODBC.js';
 import {loadEnv} from '../../confload/src/confload.mjs';
 
 
@@ -11,21 +11,26 @@ async function main() {
     // let timeToSleep = 0; // задержка между посылками в секундах
     let dotEnvPath = './conf/.env'; // файл конфигураций в котором должны быть параметры подкл-я к бд
     // класс подключения к бд
-    let dbApp = new DbAppPgjs(loadEnv(dotEnvPath));
-
+    let dbApp = await DbAppODBC.create(
+        loadEnv(dotEnvPath), 
+        {
+            dsn: 'SYBASE_DSN_DOCKER',
+            uid: 'SYBASE_USERNAME',
+            pwd: 'SYBASE_PASSWORD'
+    });
     let now1 = Date.now();
     let freqToOut = numToSend / 10;
     // цикл отправки sql запросов
     for(let i = 0; i <= numToSend; i++) {
         if((i % freqToOut) == 0) console.log(`${i} - sended`);
-        dbApp.executeQueryTag`select count(*), ${i} from mpe_logs`.then(result => { 
+        dbApp.executeQueryTag`select count(*), ${i} from diagnose`.then(result => { 
             if((i % freqToOut) == 0) console.log(result);
             if((numToSend - i) === 0) {
                 let estimated = Date.now() - now1;
                 console.log("Заняло времени (мс): " + estimated);
             }
         });
-        // await new Promise(r => setTimeout(r, timeToSleep * 1000));
+    //     // await new Promise(r => setTimeout(r, timeToSleep * 1000));
     }
     console.log("--- END ---");
 }

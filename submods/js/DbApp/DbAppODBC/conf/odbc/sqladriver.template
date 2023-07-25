@@ -1,0 +1,4 @@
+[SQL Anywhere 17]
+Description=SAP SQL Anywhere 17 ODBC Driver
+Driver=/opt/sqlanywhere17/lib64/libdbodbc17_r.so
+Setup=/opt/sqlanywhere17/lib64/libdbodbc17_r.so

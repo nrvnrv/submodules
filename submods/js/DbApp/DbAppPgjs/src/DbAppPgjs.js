@@ -10,6 +10,7 @@ const PGJSMSG_SYNTAX_ERROR = "PostgresError: syntax error";
 // при старте бд
 const PGJSMSG_STARTINGUP_ERROR = "PostgresError: the database system is starting up";
 
+
 export default class DbAppPgjs extends DbAppBaseClass {
 
     constructor(
@@ -21,9 +22,12 @@ export default class DbAppPgjs extends DbAppBaseClass {
             username: 'POSTGRESQL_USERNAME',
             password: 'POSTGRESQL_PASSWORD',
     }) {
+
         super(envConf, envDbFields);
 
-        this.connection = this.connect();
+        // структура подкл-я к бд, форм-ся с помощью ENV_CONF и envDbFields
+        this.dbConnectionStructure = this.formDbConnectionStructure();
+        this.connection = this.connect(); // переменая подключения к бд
 
         // переменные и "константы", отвечают за переподключение к бд
         // this.remainingRecconectionsQuantity = 500;
@@ -32,6 +36,14 @@ export default class DbAppPgjs extends DbAppBaseClass {
         this.TIME_BETWEEN_RECONNECT = 0.5;
     }
 
+
+    // формирует структуру подключения к бд
+    formDbConnectionStructure() {
+        let dbConnectionStructure = {};
+        for(let key of Object.keys(this.envDbFields))
+            dbConnectionStructure[key] = this.ENV_CONF[[this.envDbFields[key]]];
+        return dbConnectionStructure;
+    }
 
 
     // создает объект подключения к бд

@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+  # -------------------------------------------------------
+  # контейнер с образом ноды для работы над проектом
+  # -------------------------------------------------------
+  dbappodbc_dev:
+    container_name: DbAppODBC
+    # # image: node:12.22.12-bullseye
+    build:
+      context: .
+      dockerfile: conf/docker/dockerfile
+    # # чтобы контейнер не падал
+    command: tail -F anything
+    volumes: 
+    #   # ../ - чтобы можно было импортировать
+      - ../../:/js
+    #   # После сборки - разработка:
+    #     # /bin/bash
+    #     # cd <workinfolder>
+    #     # npm i
+    #     # node app.js / npm start

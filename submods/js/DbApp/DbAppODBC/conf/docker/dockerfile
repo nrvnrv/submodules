@@ -1,0 +1,63 @@
+FROM node:12.22.12-bullseye
+
+# SA17 env configure
+ENV LD_LIBRARY_PATH "/opt/sqlanywhere17/lib64"
+ENV ODBCINI "/etc/odbc.ini"
+
+# source /opt/sqlanywhere17/bin64/sa_config.sh
+ENV SQLANY17 "/opt/sqlanywhere17"
+ENV SQLANYSAMP17 "/opt/sqlanywhere17/samples"
+ENV PATH "$SQLANY17/bin64:$SQLANY17/bin32:${PATH:-}"
+ENV NODE_PATH="$SQLANY17/node:${NODE_PATH:-}"
+ENV PATH "$SQLANY17/bin64/jre180/bin:${PATH:-}"
+ENV LD_LIBRARY_PATH "$SQLANY17/bin64/jre180/lib/amd64/client:$SQLANY17/bin64/jre180/lib/amd64/server:$SQLANY17/bin64/jre180/lib/amd64:$SQLANY17/bin64/jre180/lib/amd64/native_threads:${LD_LIBRARY_PATH:-}"
+ENV JAVA_HOME "$SQLANY17/bin64/jre180"
+ENV LD_LIBRARY_PATH "$SQLANY17/lib32:${LD_LIBRARY_PATH:-}"
+ENV LD_LIBRARY_PATH "$SQLANY17/lib64:${LD_LIBRARY_PATH:-}"
+
+# sample_env64.sh
+ENV SQLANYSAMP17 "/opt/sqlanywhere17/samples"
+
+# locale env vars
+ENV DEBIAN_FRONTEND noninteractive
+
+# using shell
+SHELL ["/bin/bash", "-c"]
+
+# -----------------------------------------------
+# initialised shell's auxiliary vars 
+# -----------------------------------------------
+ENV our_WORKDIR "/dbservice"
+ENV our_CFGDIR "$our_WORKDIR/conf"
+ENV our_ODBC_ini_file "$our_CFGDIR/odbc/odbc.ini"
+ENV our_ODBCINST_ini_file "$our_CFGDIR/odbc/odbcinst.ini"
+ENV sys_ODBC_ini_file "/etc/odbcinst.ini"
+ENV our_TARS_folder "$our_CFGDIR/tar"
+ENV sqla17DriverTar "$our_TARS_folder/sqla17developerlinux.tar.gz"
+ENV tpmFolder "$our_WORKDIR/tmp"
+
+RUN apt-get update -y && apt-get upgrade -y \
+    && mkdir $our_WORKDIR && mkdir $tpmFolder 
+
+COPY ./conf/ /dbservice/conf/
+
+RUN \
+    # -----------------------------------------------
+    # install odbc dependencies
+    # -----------------------------------------------
+    apt-get install unixodbc unixodbc-dev odbcinst -y \
+    && apt-get install software-properties-common -y
+
+RUN \    
+    # -----------------------------------------------
+    # Install SQL Anywhere 17
+    # -----------------------------------------------
+    tar xvf $sqla17DriverTar -C $tpmFolder \
+    && $tpmFolder/sqlany17/setup -I_accept_the_license_agreement -silent -nogui -type CREATE \
+    && chmod 777 /opt/sqlanywhere17/ \
+    && source /opt/sqlanywhere17/bin64/sa_config.sh \
+    && cp $our_ODBC_ini_file $ODBCINI \
+    && cp $our_ODBCINST_ini_file $sys_ODBC_ini_file \
+    # -----------------------------------------------
+    && echo "*** *** *** *** *** FINISH *** *** *** *** ***"
+    # -----------------------------------------------

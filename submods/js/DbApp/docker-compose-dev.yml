@@ -1,0 +1,139 @@
+version: "3.9"
+
+services:
+
+    # -------------------------------------------------------
+    # REACT fronend app
+    # -------------------------------------------------------
+
+    react_app:
+        container_name: react_app
+        build:
+            context: ./app
+            dockerfile: app.Dockerfile 
+        # restart: always
+        ports:
+            - 3000:80
+
+
+    # -------------------------------------------------------
+    # CONDUCTOR between react and backend php 
+    # -------------------------------------------------------
+
+    conductor_nginx:
+        container_name: conductor_nginx
+        build:
+            context: ./server/conductor
+            dockerfile: conf/docker/conductor-nginx.Dockerfile
+        # restart: always
+        ports:
+            - 3004:80
+        links:
+            - conductor_php_fpm
+        
+
+    conductor_php_fpm:
+        container_name: conductor_php_fpm
+        build:
+            context: ./server/conductor
+            dockerfile: conf/docker/conductor-php-fpm.Dockerfile
+        # restart: always
+        ports:
+            - :9000
+        volumes:
+            - ./server/conductor:/var/www/test/  
+
+
+    # -------------------------------------------------------
+    # CHECKER service
+    # -------------------------------------------------------
+
+    checker:
+        container_name: checker
+        build:
+            context: ./server/conductor
+            dockerfile: conf/docker/checker.Dockerfile
+        # restart: always
+
+
+    # -------------------------------------------------------
+    # BACKEND-PHP for frontend service
+    # -------------------------------------------------------
+
+    backend_php_nginx:
+        container_name: backend_php_nginx
+        build:
+            context: ./server/backend-php
+            dockerfile: conf/docker/backend-php-nginx.Dockerfile
+        # restart: always
+        ports:
+            - 3001:80
+        links:
+            - backend_php_fpm
+
+
+    backend_php_fpm:
+        # image: php:fpm
+        container_name: backend_php_fpm
+        build:
+            context: ./server/backend-php
+            dockerfile: conf/docker/backend-php-fpm.Dockerfile
+        # restart: always
+        ports:
+            - :9000
+        volumes:
+            - ./server/backend-php:/var/www/test/  
+
+
+    # -------------------------------------------------------
+    # REPORTER - creation xlsx, reports etc
+    # -------------------------------------------------------
+
+    reporter:
+        container_name: reporter
+        build:
+            context: ./server/reporter
+            dockerfile: conf/docker/reporter.Dockerfile
+        # restart: always
+        ports:
+            - 3002:3002
+
+
+    # -------------------------------------------------------
+    # DBSERVICE for connetcion with database
+    # -------------------------------------------------------
+
+    dbservice_node:
+        container_name: dbservice_node
+        build:
+            context: ./server/dbservice/app_node
+            dockerfile: conf/docker/dbservice-executor-node.Dockerfile
+        # restart: always
+        ports:
+            - 3003:3003
+
+
+    # -------------------------------------------------------
+    # POSTGRES service (for sessions control)
+    # -------------------------------------------------------
+    
+    postgres:
+        container_name: postgres
+        image: postgres:15.3-bullseye
+        environment:
+            POSTGRES_DB: "mpe_db"
+            POSTGRES_USER: "mpe_admin"
+            POSTGRES_PASSWORD: "adm123"
+            # PGDATA: "/var/lib/postgresql/data/pgdata"
+        volumes:
+            - ./server/store/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+            - ./server/store/postgres/data:/var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U mpe_admin -d mpe_db"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        restart: always
