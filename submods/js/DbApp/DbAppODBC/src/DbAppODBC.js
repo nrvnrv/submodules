@@ -42,19 +42,15 @@ export default class DbAppODBC extends DbAppBaseClass {
 
     async executeQueryTag(strings, ...args) {
         let sqlResult;
-        try {
-            if (this.checkConnection()) {
-                var commonString = strings.reduce((accumulator, currentValue) => accumulator + " ? " + currentValue);
-                sqlResult = await this.connection.query(commonString, args); // выполнение запроса // select count(*), ${query} from mpe_logs
-            }
-            else {
-                this.connection = await this.connect(); // переменая подключения к бд
-                this.executeQueryTag(strings, args)
-            }
-    } catch(err) {
-            throw err;
-        }
+        // подготовленные операторы:
+        var commonString = strings.reduce((accumulator, currentValue) => accumulator + " ? " + currentValue);
+        sqlResult = await this.connection.query(commonString, args); // выполнение запроса 
         return sqlResult;
     }
-    async executeQuery() {}
+
+    async executeQuery(sqlString) {
+        let sqlResult;
+        sqlResult = await this.connection.query(sqlString); // выполнение запроса 
+        return sqlResult;
+    }
 }
