@@ -21,7 +21,7 @@ class LoadSubmodule {
     private array $SUBMODULES_PATHES;
 
 
-    public function __construct(string $submoodRootDir, array $list) {
+    public function __construct(string $submoodRootDir, array $submoodList) {
 
         // подключить ф-и чтения конфигов и прочитать конфиги
         $this->loadModuleByPath(LoadSubmodule::SUBMODULES_ROOT_PATH . "submods/php/confload/ReadConf.php");
@@ -29,7 +29,7 @@ class LoadSubmodule {
         $this->SUBMODULES_PATHES = readJson(LoadSubmodule::SUBMODULES_ROOT_PATH . $this->SUBMODULES_CONF['submod_pathes_json']);
 
         $this->submoodRootDir = $submoodRootDir;
-        $this->submodList = $list;
+        $this->submodList = $submoodList;
 
         $this->loadSubmodList();
     }

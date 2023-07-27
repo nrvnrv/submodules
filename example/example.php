@@ -10,8 +10,8 @@ $modulesToLoadList = ["logger.simple_class", "common"];
 new LoadSubmodule(SUBMOD_ROOT_DIR, $modulesToLoadList);
 
 // TO CONNECT WITH DB ADD ENV FILE IN FOLDER BEFORE EXECUTING SCRIPT!  
-const ENV_PATH = __DIR__ . "/.env";
-const CONF_PATH = __DIR__ . "/mpeappcfg.json";
+const ENV_PATH = __DIR__ . "/conf/.env";
+const CONF_PATH = __DIR__ . "/conf/mpeappcfg.json";
 
 
 // пример работы с модулем logger.simple_class
