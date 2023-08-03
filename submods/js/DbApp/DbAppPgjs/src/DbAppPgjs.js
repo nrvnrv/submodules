@@ -75,14 +75,22 @@ export default class DbAppPgjs extends DbAppBaseClass {
     // тэговая функция выполнения запросов
     async executeQueryTag(strings, ...args) {
         let sqlResult;
-        try {
+        // console.log(strings)
+        // console.log(args)
+        // try {
             sqlResult = await this.connection(strings = strings , args = args); // выполнение запроса // select count(*), ${query} from mpe_logs
-        } catch(err) {
-            if(this.ProcError(err)) sqlResult = this.executeQueryTag(strings, ...args); // ~10k calls
-        }
+        // } catch(err) {
+            // if(this.ProcError(err)) sqlResult = this.executeQueryTag(strings, ...args); // ~10k calls
+        // }
         return sqlResult;
     }
 
+    // async executeQuery(strings) {
+    //     console.log(strings);
+    //     console.log(String.raw({raw: strings}));
+    //     let sqlResult = await this.connection(strings = String.raw({raw: strings}));
+    //     return sqlResult;
+    // }
 
     // обработчик ошибки запуска бд (PGJSMSG_STARTINGUP_ERROR - все равно генерируется)
     async ProcDbStartingError(err) {
