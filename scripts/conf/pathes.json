@@ -1,1 +1,66 @@
-{"js": {"confload": {"jsmodule": {"path": "submods/js\\confload", "file": []}, "jsmodule_src": {"path": "submods/js\\confload\\src", "file": ["ReadConf.php"]}}, "DbApp.DbAppBaseClass": {"jsmodule": {"path": "submods/js\\DbApp\\DbAppBaseClass", "file": []}, "jsmodule_src": {"path": "submods/js\\DbApp\\DbAppBaseClass\\src", "file": ["ReadConf.php"]}}, "DbApp.DbAppODBC": {"jsmodule": {"path": "submods/js\\DbApp\\DbAppODBC", "file": []}, "jsmodule_src": {"path": "submods/js\\DbApp\\DbAppODBC\\src", "file": ["ReadConf.php"]}}, "DbApp.DbAppPgjs": {"jsmodule": {"path": "submods/js\\DbApp\\DbAppPgjs", "file": []}, "jsmodule_src": {"path": "submods/js\\DbApp\\DbAppPgjs\\src", "file": ["ReadConf.php"]}}}, "php": {"common": {"phpmodule": {"path": "submods/php\\common", "file": []}, "phpmodule_src": {"path": "submods/php\\common", "file": ["getGoogleTime.php", "common.php"]}}, "confload": {"phpmodule": {"path": "submods/php\\confload", "file": []}, "phpmodule_src": {"path": "submods/php\\confload", "file": ["ReadConf.php"]}}, "logger.simple_class": {"phpmodule": {"path": "submods/php\\logger\\simple_class", "file": []}, "phpmodule_src": {"path": "submods/php\\logger\\simple_class\\src", "file": ["LogToAll.php", "LogToDB.php"]}}}, "py": {"logger": {"pymodule": {"path": "submods/py\\logger", "file": []}, "pymodule_src": {"path": "submods/py\\logger", "file": []}}}, "common": {"common": {"component": {"path": "submods/py\\common", "file": ["common.py"]}}}}
+{
+  "js": {
+    "confload": {
+      "jsmodule": { "path": "submods/js\\confload", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\confload\\src",
+        "file": ["ReadConf.php"]
+      }
+    },
+    "DbApp.DbAppBaseClass": {
+      "jsmodule": { "path": "submods/js\\DbApp\\DbAppBaseClass", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\DbApp\\DbAppBaseClass\\src",
+        "file": ["ReadConf.php"]
+      }
+    },
+    "DbApp.DbAppODBC": {
+      "jsmodule": { "path": "submods/js\\DbApp\\DbAppODBC", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\DbApp\\DbAppODBC\\src",
+        "file": ["ReadConf.php"]
+      }
+    },
+    "DbApp.DbAppPgjs": {
+      "jsmodule": { "path": "submods/js\\DbApp\\DbAppPgjs", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\DbApp\\DbAppPgjs\\src",
+        "file": ["ReadConf.php"]
+      }
+    }
+  },
+  "php": {
+    "common": {
+      "phpmodule": { "path": "submods/php\\common", "file": [] },
+      "phpmodule_src": {
+        "path": "submods/php\\common",
+        "file": ["getGoogleTime.php", "common.php"]
+      }
+    },
+    "confload": {
+      "phpmodule": { "path": "submods/php\\confload", "file": [] },
+      "phpmodule_src": {
+        "path": "submods/php\\confload",
+        "file": ["ReadConf.php"]
+      }
+    },
+    "logger.simple_class": {
+      "phpmodule": { "path": "submods/php\\logger\\simple_class", "file": [] },
+      "phpmodule_src": {
+        "path": "submods/php\\logger\\simple_class\\src",
+        "file": ["LogToAll.php", "LogToDB.php"]
+      }
+    }
+  },
+  "py": {
+    "logger": {
+      "pymodule": { "path": "submods/py\\logger", "file": [] },
+      "pymodule_src": { "path": "submods/py\\logger", "file": [] }
+    }
+  },
+  "common": {
+    "common": {
+      "component": { "path": "submods/py\\common", "file": ["common.py"] }
+    }
+  }
+}

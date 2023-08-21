@@ -12,14 +12,14 @@
 
 Вид файла $envPath:
 
-	POSTGRESQL_HOST = '1.2.3.4'
-	POSTGRESQL_PORT = 5432
-	POSTGRESQL_DATABASE = ""
-	POSTGRESQL_USERNAME = ""
-	POSTGRESQL_PASSWORD = ""
+    POSTGRESQL_HOST = '1.2.3.4'
+    POSTGRESQL_PORT = 5432
+    POSTGRESQL_DATABASE = ""
+    POSTGRESQL_USERNAME = ""
+    POSTGRESQL_PASSWORD = ""
 
 ## Тестирование
 
 Запуск тестов командой
 
-	vendor\bin\phpunit --testdox tests
+    vendor\bin\phpunit --testdox tests

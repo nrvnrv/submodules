@@ -1,5 +1,6 @@
 import json
 
+
 def read_json(json_file_path, env_file_path):
     """
     Return a list of mpe_config and env_config
@@ -9,10 +10,11 @@ def read_json(json_file_path, env_file_path):
     :rtype: list[dict, dict]
     """
 
-    json_file = open(json_file_path, 'r', encoding='utf-8')
+    json_file = open(json_file_path, "r", encoding="utf-8")
     APP_CONFIG = json.load(json_file)
     ENV_CONFIG = dotenv_values(env_file_path)
     return [APP_CONFIG, ENV_CONFIG]
+
 
 def jsonprint(printable: json):
     print(json.dumps(printable, indent=4))

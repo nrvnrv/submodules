@@ -1,25 +1,25 @@
 {
-    "submodules_folder": "submods/",
-    "scripts_folder": "scripts/",
-    
-    "conf_folder": "scripts/conf/",
-    "submod_pathes_json": "scripts/conf/pathes.json",
+  "submodules_folder": "submods/",
+  "scripts_folder": "scripts/",
 
-    "language_folder": ["php", "py", "js"],
+  "conf_folder": "scripts/conf/",
+  "submod_pathes_json": "scripts/conf/pathes.json",
 
-    "SUBMODS_FLAGS": {
-        "component": ".is_a_component",
+  "language_folder": ["php", "py", "js"],
 
-        "pymodule": ".is_a_pymodule",
-        "pymodule_include": ".is_a_pymodule_include",
-        "pymodule_src": ".is_a_pymodule_src",
-        
-        "phpmodule": ".is_a_phpmodule",
-        "phpmodule_include": ".is_a_phpmodule_include",
-        "phpmodule_src": ".is_a_phpmodule_src",
+  "SUBMODS_FLAGS": {
+    "component": ".is_a_component",
 
-        "jsmodule": ".is_a_jsmodule",
-        "jsmodule_include": ".is_a_jsmodule_include",
-        "jsmodule_src": ".is_a_jsmodule_src"
-    }
+    "pymodule": ".is_a_pymodule",
+    "pymodule_include": ".is_a_pymodule_include",
+    "pymodule_src": ".is_a_pymodule_src",
+
+    "phpmodule": ".is_a_phpmodule",
+    "phpmodule_include": ".is_a_phpmodule_include",
+    "phpmodule_src": ".is_a_phpmodule_src",
+
+    "jsmodule": ".is_a_jsmodule",
+    "jsmodule_include": ".is_a_jsmodule_include",
+    "jsmodule_src": ".is_a_jsmodule_src"
+  }
 }

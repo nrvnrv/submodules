@@ -5,6 +5,16 @@
  *
  * ...
  */
+
+function wp_normalize_path( $path ) {
+    $path = str_replace( '\\', '/', $path );
+    $path = preg_replace( '|(?<=.)/+|', '/', $path );
+    if ( ':' === substr( $path, 1, 1 ) ) {
+        $path = ucfirst( $path );
+    }
+    return $path;
+}
+
 class LoadSubmodule {
 
     private array $submodList;
@@ -43,7 +53,9 @@ class LoadSubmodule {
                     foreach(array_keys($this->SUBMODULES_CONF['SUBMODS_FLAGS']) as $artifacts) {
                         if(array_key_exists($artifacts, $this->SUBMODULES_PATHES['php'][$submod])) {
                             foreach($this->SUBMODULES_PATHES['php'][$submod][$artifacts]["file"] as $srcFile) {
-                                $this->loadModuleByPath($this->submoodRootDir . $this->SUBMODULES_PATHES['php'][$submod][$artifacts]["path"] . "/" . $srcFile);
+                                $filePath = wp_normalize_path($this->submoodRootDir . "/" . $this->SUBMODULES_PATHES['php'][$submod][$artifacts]["path"] . "/" . $srcFile);
+                                // echo $filePath . "\n";
+                                $this->loadModuleByPath($filePath);
                             }
                         }
                     }

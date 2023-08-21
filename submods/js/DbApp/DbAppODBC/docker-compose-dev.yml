@@ -11,8 +11,8 @@ services:
       dockerfile: conf/docker/dockerfile
     # # чтобы контейнер не падал
     command: tail -F anything
-    volumes: 
-    #   # ../ - чтобы можно было импортировать
+    volumes:
+      #   # ../ - чтобы можно было импортировать
       - ../../:/js
     #   # После сборки - разработка:
     #     # /bin/bash
