@@ -63,7 +63,7 @@ Common modules for microservices.
 
 - To add new submodule in folder (service) where u wanna use submodule in cmd run cmd below to load submodule repo:
 
-`git submodule add ssh://git@gitlab.gsmk.ru:2222/iad/mpe_submodules.git`
+`git submodule add ssh://git@gitlab.gsmk.ru:2222/iad/submodules.git`
 
 - To add submodule in clonning repo:
 

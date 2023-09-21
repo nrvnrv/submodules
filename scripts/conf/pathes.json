@@ -1,31 +1,45 @@
 {
   "js": {
+    "common": {
+      "jsmodule": { "path": "submods/js\\common", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\common",
+        "file": ["procUndefinedVal.js"]
+      }
+    },
     "confload": {
       "jsmodule": { "path": "submods/js\\confload", "file": [] },
       "jsmodule_src": {
         "path": "submods/js\\confload\\src",
-        "file": ["ReadConf.php"]
+        "file": ["ReadConf.js"]
       }
     },
     "DbApp.DbAppBaseClass": {
       "jsmodule": { "path": "submods/js\\DbApp\\DbAppBaseClass", "file": [] },
       "jsmodule_src": {
         "path": "submods/js\\DbApp\\DbAppBaseClass\\src",
-        "file": ["ReadConf.php"]
+        "file": ["DbAppBaseCheck.mjs", "DbAppBaseClass.mjs"]
       }
     },
     "DbApp.DbAppODBC": {
       "jsmodule": { "path": "submods/js\\DbApp\\DbAppODBC", "file": [] },
       "jsmodule_src": {
         "path": "submods/js\\DbApp\\DbAppODBC\\src",
-        "file": ["ReadConf.php"]
+        "file": ["DbAppODBC.js"]
       }
     },
     "DbApp.DbAppPgjs": {
       "jsmodule": { "path": "submods/js\\DbApp\\DbAppPgjs", "file": [] },
       "jsmodule_src": {
         "path": "submods/js\\DbApp\\DbAppPgjs\\src",
-        "file": ["ReadConf.php"]
+        "file": ["DbAppPgjs.js"]
+      }
+    },
+    "logger": {
+      "jsmodule": { "path": "submods/js\\logger", "file": [] },
+      "jsmodule_src": {
+        "path": "submods/js\\logger\\src",
+        "file": ["logger.js"]
       }
     }
   },
@@ -34,7 +48,7 @@
       "phpmodule": { "path": "submods/php\\common", "file": [] },
       "phpmodule_src": {
         "path": "submods/php\\common",
-        "file": ["getGoogleTime.php", "common.php"]
+        "file": ["common.php", "getGoogleTime.php"]
       }
     },
     "confload": {
@@ -50,12 +64,6 @@
         "path": "submods/php\\logger\\simple_class\\src",
         "file": ["LogToAll.php", "LogToDB.php"]
       }
-    }
-  },
-  "py": {
-    "logger": {
-      "pymodule": { "path": "submods/py\\logger", "file": [] },
-      "pymodule_src": { "path": "submods/py\\logger", "file": [] }
     }
   },
   "common": {
